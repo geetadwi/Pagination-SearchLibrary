@@ -95,7 +95,7 @@
 
 	        $host='localhost';
 
-	        $user='u317826477_patiaala';
+	        $user='root';
 
 			$connection= mysqli_connect ($host, $user, "" , $db); 
 			if (!$connection) 

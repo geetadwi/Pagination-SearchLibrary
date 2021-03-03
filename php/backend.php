@@ -47,36 +47,7 @@
 	    $value=array(array('string','mock_test_tbl','Name','Name,Id,Email,Phone,Gender','Id'));
 	    $query_data=array();
 
-	    foreach ($value as $key => $value1) 
-	    {
-	        $query_details=array_combine($keys, $value1);
-	        array_push($query_data, $query_details);
-	    }
-
-	    $get_query_and_data=$obj->get_query_and_data($query_data); 
-	    $result=array();
-	   
-	    if($get_query_and_data['query']!='')
-	    {  
-	        $result=mysqli_prepared_query($connection_mock_chat,$get_query_and_data['query'],"",$params);        
-	    }
-
-	    $get_ids=$obj->get_ids($result,$get_query_and_data['string'],$get_query_and_data['get_ids']);
-	   
-	    $where_data=$obj->searching_data($get_ids);
-
-	    $table_from=array("table_name_id","table_name_email");
-	    $table1_to=array("mock_test_tbl","mock_test_tbl");
-	    $tble1=str_replace($table_from, $table1_to, $where_data);
-
-	    if($tble1=='')
-	    {
-	        $total_data=array();
-	        echo json_encode($total_data);
-	    }
-	    else
-	    {
-	        $where=$input;
+	        $where=$_POST['input_value'];
 
 	        $total_data=$application_obj->total_data($connection_mock_chat,$buffer_range,$data_per_page,$where);
 	        $response_data['total_length']=$total_data['total_length'];
@@ -85,8 +56,6 @@
 	        $response_data['table_heading_name']=$table_heading_name;
 	        $response_data['table_column_name']=$table_column_name;
 	        echo json_encode($response_data);
-	    }
-
 	}
 	Class ManageApp {
 
